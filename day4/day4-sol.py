@@ -10,21 +10,16 @@ def solution():
     data = fileUtil.textTo1DList('data.txt')
     part1_res = 0
     part2_res = 0
-    dup_range = lambda temp1, temp2: range(temp1, temp2 + 1)
 
     for lines in data:
-        stripped = lines.split(",")
-        left, right = stripped
-        left1 = left.split("-")
-        right1 = right.split("-")
-        temp1 = set(dup_range(int(left1[0]),int(left1[-1])))
-        temp2 = set(dup_range(int(right1[0]), int(right1[-1])))
-        subset = temp1 - temp2
-        subset2 = temp2 - temp1
-        subset3 = temp1 & temp2
-        if len(subset) == 0 or len(subset2) == 0:
+        left, right = lines.split(",")
+        left1, right1 = left.split("-"), right.split("-")
+        temp1 = set(range(int(left1[0]),int(left1[-1]) + 1))
+        temp2 = set(range(int(right1[0]), int(right1[-1]) + 1))
+        subset = temp1 & temp2
+        if temp1.issubset(temp2) or temp2.issubset(temp1):
             part1_res += 1
-        if len(subset3) > 0:
+        if len(subset) > 0:
             part2_res += 1
     return (part1_res, part2_res)
 
