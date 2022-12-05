@@ -12,7 +12,9 @@ def removeSquareBracket():
 
 # PART 1
 def solution_p1():
+    # Create dictionary with key from 1-10 and value deque()
     storages = {i: deque() for i in range(1,10)}
+    # Create dictionary with key from 0-36 with step of 4 and value from 1-10
     position = {k:v for k,v in zip(range(0,36,4),range(1,10))}
     p1_res = ''
     with open("parsed_data.txt", 'r') as f:
@@ -42,7 +44,9 @@ def solution_p1():
 
 # PART 2
 def solution_p2():
+    # Create dictionary with key from 1-10 and value deque()
     storages = {i: deque() for i in range(1,10)}
+    # Create dictionary with key from 0-36 with step of 4 and value from 1-10
     position = {k:v for k,v in zip(range(0,36,4),range(1,10))}
     p2_res = ''
     with open("parsed_data.txt", 'r') as f:
@@ -60,17 +64,15 @@ def solution_p2():
         for instruction in instructions_split:
             result = re.findall(r"\d+", instruction)
             amount, start, end = result
-            counter = int(amount)
-            print(counter)
             temp = deque()
             for i in range(int(amount)):
                 if len(storages[int(start)]) == 0: # Empty stack
                     break
                 temp.appendleft(storages[int(start)].popleft())
-                counter += 1
             storages[int(end)].extendleft(temp)
         for key in storages:
             p2_res += storages[key][0] if storages[key] else ''
         return p2_res
 
 print(solution_p1())
+print(solution_p2())
