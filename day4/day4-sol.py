@@ -1,10 +1,11 @@
-from helpers import fileUtil, algoUtil
 import sys
 import os
 from typing import *
 script_dir = os.path.dirname(__file__)
 mymodule_dir = os.path.join(script_dir, '..')
 sys.path.append(mymodule_dir)
+from helpers import fileUtil, algoUtil
+
 
 def solution():
     data = fileUtil.textTo1DList('data.txt')
